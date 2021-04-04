@@ -46,3 +46,12 @@ Resources:
         - - !Ref 'AWS::Region'
           - 'c'
       CidrBlock: 10.0.3.0/24
+  KarakuriTestSubnet:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref KarakuriVPC
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'a'
+      CidrBlock: 10.0.4.0/24
