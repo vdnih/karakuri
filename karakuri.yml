@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ---
+Resources: 
+  KarakuriVPC:
+    Type: "AWS::EC2::VPC"
+    Properties:
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Name
+          Value: karakuri-vpc
+  KarakuriPublicSubnetA:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref KarakuriVPC
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'a'
+      CidrBlock: 10.0.0.0/24
+  KarakuriPublicSubnetC:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref KarakuriVPC
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'c'
+      CidrBlock: 10.0.1.0/24
+  KarakuriPrivateSubnetA:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref KarakuriVPC
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'a'
+      CidrBlock: 10.0.2.0/24
+  KarakuriPrivateSubnetC:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref KarakuriVPC
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'c'
+      CidrBlock: 10.0.3.0/24
